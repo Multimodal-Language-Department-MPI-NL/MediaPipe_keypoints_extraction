@@ -1,0 +1,13 @@
+name: mp-keypoints
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyterlab
+  - pip
+  - pip:
+      - mediapipe>=0.10
+      - opencv-python
+      - tqdm
