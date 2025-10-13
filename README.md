@@ -1,5 +1,7 @@
 # MediaPipe Pose & Holistic Analysis for Multimodal Interaction Research
 
+> Attribution: Use the script prepared for the focus group session. Attribute to this Envision Box module: [Module](https://www.envisionbox.org/embedded_MergingMultimodal_inPython.html)
+
 A comprehensive tutorial for extracting human pose landmarks using Google's MediaPipe library, specifically designed for **multimodal interaction research** and gesture analysis.
 
 ## 🔬 Research Context
@@ -11,7 +13,7 @@ This project is based on the [MEDAL Workshop on Multimodal Interaction](https://
 - **Multimodal similarity analysis** combining speech and gesture features
 - **Temporal alignment** of different modalities in conversation
 
-## 🎯 What You'll Learn
+## 🎯 What This Project Does
 
 1. **Pose Landmark Extraction**: Extract 33 body landmarks using MediaPipe Pose or 75+ landmarks (body + hands + face) using MediaPipe Holistic
 2. **Model Configuration**: Understand trade-offs between different model complexities (0, 1, 2) and their impact on accuracy vs. speed
@@ -54,15 +56,13 @@ jupyter lab
 
 
 
-## 📊 Output
+## 📊 Smoothing Process
 
 - **Keypoints Array**: Shape `(n_frames, n_landmarks, 4)` where 4 = [x, y, z, visibility]
 - **Overlay Videos**: Annotated videos with drawn landmarks saved to `Mediapipe_results/`
 - **Raw Data**: Numpy arrays with landmark coordinates for further analysis
 
-## 🔗 Attribution
-
-This project is based on the work from the [MEDAL Workshop on Multimodal Interaction](https://github.com/Multimodal-Language-Department-MPI-NL/medal_workshop_on_multimodal_interaction/tree/main) by Raquel Fernandez & Esam Ghaleb. The original workshop materials provide additional exercises and advanced techniques for multimodal interaction analysis.
+## 🔧 Smoothing Techniques
 
 ## 📚 Additional Resources
 
