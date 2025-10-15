@@ -6,7 +6,7 @@ A comprehensive tutorial for extracting human pose landmarks using Google's Medi
 
 ## 🔬 Research Context
 
-This project is based on the [MEDAL Workshop on Multimodal Interaction](https://github.com/Multimodal-Language-Department-MPI-NL/medal_workshop_on_multimodal_interaction/tree/main) by Raquel Fernandez & Esam Ghaleb. It provides tools for:
+This module shows how to generate motion tracking data from videos. It uses Google’s MediaPipe library to extract human pose landmarks across all video frames. 
 
 - **Gesture segmentation** and classification
 - **Kinematic feature extraction** for movement analysis  
