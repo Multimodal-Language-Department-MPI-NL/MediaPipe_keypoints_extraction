@@ -1,71 +1,82 @@
-# MediaPipe Pose & Holistic Analysis for Multimodal Interaction Research
+# MediaPipe Keypoint Extraction
 
-> Attribution: Use the script prepared for the focus group session. Attribute to this Envision Box module: [Module](https://www.envisionbox.org/embedded_MergingMultimodal_inPython.html)
+> Attribution: Based on work from the [MEDAL Workshop on Multimodal Interaction](https://github.com/Multimodal-Language-Department-MPI-NL/medal_workshop_on_multimodal_interaction) and Wim Pouw's [envisionBOX modules](https://github.com/WimPouw/envisionBOX_modulesWP).
 
-A comprehensive tutorial for extracting human pose landmarks using Google's MediaPipe library, specifically designed for **multimodal interaction research** and gesture analysis.
+A streamlined tool for extracting human pose keypoints from videos using Google's MediaPipe Holistic library. The extracted data is saved as CSV files for further analysis in multimodal interaction research.
 
-## 🔬 Research Context
+## Overview
 
-This module shows how to generate motion tracking data from videos. It uses Google’s MediaPipe library to extract human pose landmarks across all video frames. 
+This module generates motion tracking data from videos using Google's MediaPipe Holistic library to extract human pose landmarks across all video frames.
 
-- **Gesture segmentation** and classification
-- **Kinematic feature extraction** for movement analysis  
-- **Multimodal similarity analysis** combining speech and gesture features
-- **Temporal alignment** of different modalities in conversation
+## What This Module Does
 
-## 🎯 What This Project Does
+1. **Extracts MediaPipe Holistic landmarks** from video files:
+   - 33 body landmarks (with X, Y, Z coordinates + visibility scores)
+   - 42 hand landmarks (21 per hand, with X, Y, Z coordinates)
+   - 478 face landmarks (with X, Y, Z coordinates)
 
-1. **Pose Landmark Extraction**: Extract 33 body landmarks using MediaPipe Pose or 75+ landmarks (body + hands + face) using MediaPipe Holistic
-2. **Model Configuration**: Understand trade-offs between different model complexities (0, 1, 2) and their impact on accuracy vs. speed
-3. **Temporal Smoothing**: Learn how tracking affects landmark stability and reduces jitter
-4. **Gesture Analysis**: Apply pose extraction specifically for gesture segmentation and multimodal interaction research
-5. **Data Visualization**: Plot landmark trajectories and analyze movement patterns
+2. **Exports time series data** as CSV files:
+   - `*_body.csv` - Body keypoints
+   - `*_hands.csv` - Hand keypoints
+   - `*_face.csv` - Face keypoints
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-MediaPipe_keypoints/
+MediaPipe_keypoints_extraction/
 ├── README.md
-├── .gitignore
-├── .gitattributes
 ├── environment.yml
 ├── notebooks/
-│   └── Mediapipe_Pose_Tutorial.ipynb
-├── utils/
-│   ├── __init__.py
-│   └── extract_mp_pose.py          # Required by the notebook
-├── scripts/
-│   └── pose_cli.py                 # Optional CLI wrapper
+│   └── Mediapipe_Pose_Tutorial.ipynb  # Main extraction notebook
 ├── input_videos/
-│   └── .gitkeep                    # Put your .mp4 files here or use webcam=0
+│   └── (place your .mp4 video files here)
 ├── Mediapipe_results/
-│   └── .gitkeep                    # Output directory for processed videos
-└── results/
-    └── .gitkeep                    # Output directory for keypoints data
+│   └── (CSV files will be saved here)
+└── utils/
+    └── __init__.py
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
-### Run the Interactive Notebook
+### 1. Set up the environment
 ```bash
 conda env create -f environment.yml
 conda activate mp-keypoints
-jupyter lab
-# open notebooks/Mediapipe_Pose_Tutorial.ipynb
 ```
 
+### 2. Add your videos
+Place your video files (.mp4) in the `input_videos/` folder.
 
+### 3. Run the notebook
+```bash
+jupyter lab
+# Open notebooks/Mediapipe_Pose_Tutorial.ipynb and run all cells
+```
 
-## 📊 Smoothing Process
+### 4. Get your results
+CSV files will be saved in the `Mediapipe_results/` folder with the following naming convention:
+- `<video_name>_body.csv`
+- `<video_name>_hands.csv`
+- `<video_name>_face.csv`
 
-- **Keypoints Array**: Shape `(n_frames, n_landmarks, 4)` where 4 = [x, y, z, visibility]
-- **Overlay Videos**: Annotated videos with drawn landmarks saved to `Mediapipe_results/`
-- **Raw Data**: Numpy arrays with landmark coordinates for further analysis
+## Output Format
 
-## 🔧 Smoothing Techniques
+Each CSV file contains frame-by-frame time series data:
+- **Time column**: Milliseconds from start of video
+- **Body CSV**: X, Y, Z, visibility for 33 body landmarks (133 columns + time)
+- **Hands CSV**: X, Y, Z for 42 hand landmarks (126 columns + time)
+- **Face CSV**: X, Y, Z for 478 face landmarks (1434 columns + time)
 
-## 📚 Additional Resources
+## Next Steps
+
+The extracted CSV files can be used for:
+- **Smoothing and normalization** (see `../Smoothing/` module)
+- **Kinematic analysis** - speed, acceleration, jerk (see `../Speed_Acceleration_Jerk/` module)
+- **Gesture segmentation** (see `../Submovements_Holds/` module)
+- **Multimodal merging** with ELAN annotations (see `../Merging_Motion_ELAN/` module)
+
+## Additional Resources
 
 - **MediaPipe Documentation**: [https://mediapipe.dev/](https://mediapipe.dev/)
 - **MEDAL Workshop Repository**: [https://github.com/Multimodal-Language-Department-MPI-NL/medal_workshop_on_multimodal_interaction](https://github.com/Multimodal-Language-Department-MPI-NL/medal_workshop_on_multimodal_interaction)
-- **Multimodal Interaction Research**: Explore recent papers in gesture analysis and multimodal communication
+- **Wim Pouw's envisionBOX**: [https://github.com/WimPouw/envisionBOX_modulesWP](https://github.com/WimPouw/envisionBOX_modulesWP)
